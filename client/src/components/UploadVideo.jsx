@@ -27,6 +27,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     gap: 1.2rem;
     position: relative;
+    border-radius: 0.3rem;
 `
 const Close = styled.div`
     position: absolute;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
@@ -85,6 +85,11 @@ const Navbar = () => {
   const [openVideo, setOpenVideo] = useState(false)
   const [openPicture, setOpenPicture] = useState(false)
   const [q, setQ] = useState("")
+
+
+  useEffect(()=>{
+
+  },[currentUser.img])
 
   return (
     <>
