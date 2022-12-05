@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import axios from "axios"
 import { loginFailure, loginStart, loginSuccess, signupFailure } from "../redux/userSlice";
 import { auth, provider } from "../firebase";
 import { signInWithPopup } from "firebase/auth"
-import { UNSAFE_NavigationContext, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;

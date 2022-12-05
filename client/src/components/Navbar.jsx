@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
 import { Link, useNavigate } from "react-router-dom";
-import Upload from "./Upload";
-import { loginFailure, logout } from "../redux/userSlice";
+import UploadVideo from "./UploadVideo";
+import UploadPicture from "./UploadPicture";
+
 
 const Container = styled.div`
   position: sticky;
@@ -65,21 +66,25 @@ const User = styled.div`
   gap: 0.8rem;
   font-weight: 500;
   color: ${({ theme }) => theme.text};
+
 `
+
 const Avatar = styled.img`
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
   background-color: #999;
+  cursor:pointer;
+
 `
 
 
 const Navbar = () => {
   const navigate = useNavigate()
   const { currentUser } = useSelector(state => state.user)
-  const [open, setOpen] = useState(false)
+  const [openVideo, setOpenVideo] = useState(false)
+  const [openPicture, setOpenPicture] = useState(false)
   const [q, setQ] = useState("")
-  const dispatch = useDispatch()
 
   return (
     <>
@@ -91,8 +96,8 @@ const Navbar = () => {
           </Search>
           {currentUser ? (
             <User>
-              <VideoCallOutlinedIcon cursor="pointer" onClick={() => setOpen(true)} />
-              <Avatar src={currentUser.img} />
+              <VideoCallOutlinedIcon cursor="pointer" onClick={() => setOpenVideo(true)} />
+              <Avatar src={currentUser.img} onMouseOver={e => (e.currentTarget.src = "https://t4.ftcdn.net/jpg/04/81/13/43/360_F_481134373_0W4kg2yKeBRHNEklk4F9UXtGHdub3tYk.jpg")} onMouseOut={e => (e.currentTarget.src = currentUser.img)} onClick={() => setOpenPicture(true)} />
               {currentUser.name}
             </User>
           ) : <Link to="signin" style={{ textDecoration: "none" }}>
@@ -103,7 +108,8 @@ const Navbar = () => {
           </Link>}
         </Wrapper>
       </Container>
-      {open && <Upload setOpen={setOpen} />}
+      {openVideo && <UploadVideo setOpen={setOpenVideo} />}
+      {openPicture && <UploadPicture setOpen={setOpenPicture} />}
     </>
   );
 };
