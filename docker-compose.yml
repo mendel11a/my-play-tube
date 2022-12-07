@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  api:
+    container_name: mytube_api
+    restart: unless-stopped
+    image: mytube-api-prod:1.0.0
+    build:
+      context: server
+      target: production
+      dockerfile: Dockerfile
+    ports:
+      - 8800:8800
+    env_file:
+      - /server/.env
+    networks:
+      - shared-network
+    depends_on:
+      - mongo
+  
+  client:
+    container_name: mytube_client
+    restart: unless-stopped
+    image: mytube-client-prod:1.0.0
+    build:
+      context: client
+      target: production
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - shared-network
+    depends_on:
+      - api
+  
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - 27017:27017
+    networks:
+      - shared-network
+
+networks:
+  shared-network:
+     
