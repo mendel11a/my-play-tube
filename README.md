@@ -22,7 +22,7 @@
 ![image](https://user-images.githubusercontent.com/57116911/206908523-bcc6139f-66cb-4d9a-8dac-f086ac93affd.png)
 
 ## Upload Profile Picture
-![image](https://user-images.githubusercontent.com/57116911/206908612-ca0bbc76-2c7d-46b5-9117-f39c06259338.png)
+<img width="946" alt="Screenshot_5" src="https://user-images.githubusercontent.com/57116911/206908710-eee956ed-b7c9-4366-9f1d-9a4e8629ee2e.png">
 <img width="943" alt="Screenshot_6" src="https://user-images.githubusercontent.com/57116911/206908674-c122f30f-8e34-4955-bd27-9513d0b8927c.png">
 
 
