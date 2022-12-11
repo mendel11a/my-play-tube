@@ -9,3 +9,14 @@
 ![image](https://user-images.githubusercontent.com/57116911/206905116-cbfb616b-fd15-4fc5-991a-cf4911234e2b.png)
 
 ## Video Page
+![image](https://user-images.githubusercontent.com/57116911/206908148-8cd274f8-1b0b-4253-885d-a9c02a888b85.png)
+
+## After Registration 
+![image](https://user-images.githubusercontent.com/57116911/206908236-0bddff98-8a5b-4430-bc50-852b35d828f6.png)
+
+## LIGHT/DARK Mode
+![image](https://user-images.githubusercontent.com/57116911/206908279-f5c9f65a-848b-4baa-91bc-40837525a84c.png)
+![image](https://user-images.githubusercontent.com/57116911/206908315-08d1a6db-0e06-477d-a761-a325121e3469.png)
+
+
+
