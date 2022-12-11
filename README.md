@@ -12,7 +12,7 @@
 ![image](https://user-images.githubusercontent.com/57116911/206908148-8cd274f8-1b0b-4253-885d-a9c02a888b85.png)
 
 ## After Registration 
-![image](https://user-images.githubusercontent.com/57116911/206908236-0bddff98-8a5b-4430-bc50-852b35d828f6.png)
+<img width="943" alt="Screenshot_2" src="https://user-images.githubusercontent.com/57116911/206908406-df74a45f-380b-440b-a765-3565e7afedb4.png">
 
 ## LIGHT/DARK Mode
 ![image](https://user-images.githubusercontent.com/57116911/206908279-f5c9f65a-848b-4baa-91bc-40837525a84c.png)
