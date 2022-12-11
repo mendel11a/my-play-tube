@@ -18,6 +18,14 @@
 <img width="938" alt="Screenshot_3" src="https://user-images.githubusercontent.com/57116911/206908438-1e783cfe-8405-4f49-8e36-5a65238cfb2d.png">
 <img width="948" alt="Screenshot_4" src="https://user-images.githubusercontent.com/57116911/206908443-80c63d27-0b55-43b0-bd5e-ea3142a8cf60.png">
 
+## Upload Video
+![image](https://user-images.githubusercontent.com/57116911/206908523-bcc6139f-66cb-4d9a-8dac-f086ac93affd.png)
+
+## Upload Profile Picture
+![image](https://user-images.githubusercontent.com/57116911/206908612-ca0bbc76-2c7d-46b5-9117-f39c06259338.png)
+![image](https://user-images.githubusercontent.com/57116911/206908636-39c61a07-47aa-428f-9059-5ee8fddb8151.png)
+
+
 
 
 
