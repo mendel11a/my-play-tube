@@ -23,7 +23,8 @@
 
 ## Upload Profile Picture
 ![image](https://user-images.githubusercontent.com/57116911/206908612-ca0bbc76-2c7d-46b5-9117-f39c06259338.png)
-![image](https://user-images.githubusercontent.com/57116911/206908636-39c61a07-47aa-428f-9059-5ee8fddb8151.png)
+<img width="943" alt="Screenshot_6" src="https://user-images.githubusercontent.com/57116911/206908674-c122f30f-8e34-4955-bd27-9513d0b8927c.png">
+
 
 
 
