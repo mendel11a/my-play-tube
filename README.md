@@ -15,8 +15,9 @@
 <img width="943" alt="Screenshot_2" src="https://user-images.githubusercontent.com/57116911/206908406-df74a45f-380b-440b-a765-3565e7afedb4.png">
 
 ## LIGHT/DARK Mode
-![image](https://user-images.githubusercontent.com/57116911/206908279-f5c9f65a-848b-4baa-91bc-40837525a84c.png)
-![image](https://user-images.githubusercontent.com/57116911/206908315-08d1a6db-0e06-477d-a761-a325121e3469.png)
+<img width="938" alt="Screenshot_3" src="https://user-images.githubusercontent.com/57116911/206908438-1e783cfe-8405-4f49-8e36-5a65238cfb2d.png">
+<img width="948" alt="Screenshot_4" src="https://user-images.githubusercontent.com/57116911/206908443-80c63d27-0b55-43b0-bd5e-ea3142a8cf60.png">
+
 
 
 
