@@ -109,6 +109,17 @@ export const sub = async (req, res, next) => {
     }
 }
 
+export const fans = async (req,res,next) =>{
+    const user = await User.findById(req.user.id)
+    console.log(user._id);
+    try{
+        const users = await User.find({ subscribedUsers: { $in: user._id } }).limit() // find all those users that follow me
+        res.status(200).json(users)
+    }catch(err){
+        next(err)
+    }
+}
+
 export const getByTag = async (req, res, next) => {
     const tags = req.query.tags.split(',')
     try {

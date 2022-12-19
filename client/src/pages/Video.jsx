@@ -118,7 +118,7 @@ const VideoFrame= styled.video`
 `
 
 
-const Video = () => {
+const Video = ({socket}) => {
   const { currentUser } = useSelector(state => state.user)
   const { currentVideo } = useSelector(state => state.video)
   const dispatch = useDispatch()
@@ -136,7 +136,7 @@ const Video = () => {
         setChannel(channelRes.data)
         dispatch(fetchSuccess(videoRes.data))
       } catch (err) {
-
+        
       }
     }
     fetchData()
@@ -146,10 +146,12 @@ const Video = () => {
     await axios.put(`/users/like/${currentVideo._id}`)
     dispatch(like(currentUser._id))
   }
+
   const handleDislike = async () => {
     await axios.put(`/users/dislike/${currentVideo._id}`)
     dispatch(dislike(currentUser._id))
   }
+
   const handleSubscribe = async () => {
     currentUser.subscribedUsers?.includes(channel._id) ?
       await axios.put(`/users/unsub/${channel._id}`) :

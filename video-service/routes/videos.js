@@ -1,5 +1,5 @@
 import express from "express"
-import { addVideo, addView, deleteVideo, getByTag, getVideo, random, search, sendLog, sub, trend, updateVideo } from "../controllers/video.js"
+import { addVideo, addView, deleteVideo, fans, getByTag, getVideo, random, search, sendLog, sub, trend, updateVideo } from "../controllers/video.js"
 import { verifyToken } from "../verifyToken.js"
 
 const router = express.Router()
@@ -28,13 +28,17 @@ router.get("/trend", trend)
 //get random videos
 router.get("/random", random)
 
-//get subscribed users videos
+//get videos of user i subscribed to
 router.get("/sub", verifyToken, sub)
+
+//get users that subscribed to me
+router.get("/fans",verifyToken, fans)
 
 //get videos by tags
 router.get("/tags", getByTag)
 
 //get videos by search
 router.get("/search/", search)
+
 
 export default router

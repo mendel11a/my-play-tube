@@ -4,6 +4,7 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/
 import app from "../firebase"
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 const Container = styled.div`
@@ -68,8 +69,9 @@ const Label = styled.label`
     font-size: 0.9rem;
 `
 
-const UploadVideo = ({ setOpen }) => {
+const UploadVideo = ({ setOpen, socket }) => {
     const navigate= useNavigate()
+    const { currentUser } = useSelector(state => state.user)
     const [img, setImg] = useState(undefined)
     const [video, setVideo] = useState(undefined)
     const [imgPerc, setImgPerc] = useState(0)
@@ -134,6 +136,19 @@ const UploadVideo = ({ setOpen }) => {
         const res = await axios.post("/videos",
             {...inputs, tags}
         )
+        const subscribers = await axios.get("/videos/fans") // find all those users that follow me and update them that ive done an action
+        console.log(subscribers);
+        const subscribersName=[]
+        subscribers.data.forEach((sub)=>subscribersName.push(sub.name))
+        socket.emit("sendNotification",{
+            senderName: currentUser.name,
+            senderImage: currentUser.img,
+            videoId:res.data._id,
+            videoTitle: inputs.title,
+            videoUrl: inputs.videoUrl,
+            videImgUrl: inputs.imgUrl,
+            receiverName: subscribersName,
+        } )
         setOpen(false)
         res.status===200 && navigate(`/video/${res.data._id}`)
     }
