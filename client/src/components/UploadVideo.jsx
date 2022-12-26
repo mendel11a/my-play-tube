@@ -8,15 +8,16 @@ import { useSelector } from 'react-redux';
 
 
 const Container = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
     background-color: #00000097;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    z-index: 9;
 `
 const Wrapper = styled.div`
     height: 38rem;
@@ -136,8 +137,7 @@ const UploadVideo = ({ setOpen, socket }) => {
         const res = await axios.post("/videos",
             {...inputs, tags}
         )
-        const subscribers = await axios.get("/videos/fans") // find all those users that follow me and update them that ive done an action
-        console.log(subscribers);
+        const subscribers = await axios.get("/videos/fans") // find all those users that follow me to update them that ive done an action
         const subscribersName=[]
         subscribers.data.forEach((sub)=>subscribersName.push(sub.name))
         socket.emit("sendNotification",{
@@ -148,7 +148,11 @@ const UploadVideo = ({ setOpen, socket }) => {
             videoUrl: inputs.videoUrl,
             videImgUrl: inputs.imgUrl,
             receiverName: subscribersName,
-        } )
+        })
+        await axios.post("/notifications",{
+            userId:currentUser._id,
+            videoId:res.data._id
+        }) 
         setOpen(false)
         res.status===200 && navigate(`/video/${res.data._id}`)
     }

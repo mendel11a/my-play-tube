@@ -5,9 +5,16 @@ const NotificationSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    description: {
+    receiverId: {
         type: String,
-        required: true, 
+        required: true,
+    },
+    videoId: {
+        type: String,
+    },
+    read: {
+        type: Boolean,
+        default: false
     }
 
 }, { timestamps: true }

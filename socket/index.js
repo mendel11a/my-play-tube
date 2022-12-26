@@ -9,7 +9,7 @@ const io = new Server({
 var onlineUsers = []
 
 const addNewUser = (username, userImage, socketId) => {
-    !onlineUsers.some(user => user.username === username) &&
+    !onlineUsers.some(user => user.username === username) && username &&
         onlineUsers.push({ username, userImage, socketId })
 }
 
@@ -24,21 +24,13 @@ const getUser = (userName) => {
 io.on("connection", (socket) => {
     socket.on("newUser", (userName, userImage) => {
         addNewUser(userName, userImage, socket.id)
-        console.log("??????????");
-        console.log(onlineUsers);
-        console.log("??????????");
     })
 
     socket.on("sendNotification",
-        ({ senderName, senderImage, videoId, videoTitle, videoUrl, videImgUrl, receiverName }) => {
+        ({ senderName, senderImage, videoId, videoTitle, videoUrl, videoImgUrl, receiverName }) => {
             const receivers = []
-            console.log(onlineUsers);
-            console.log("??????????");
-            console.log(receiverName);
-            console.log("??????????");
             receiverName.forEach((receiver) => receivers.push(getUser(receiver)))
-            console.log(receivers);
-            receivers.forEach((receiver) => receiver.username && io.to(receiver.socketId).emit("getNotification", { senderName, senderImage, videoId, videoTitle, videoUrl, videImgUrl }))
+            receivers.forEach((receiver) => receiver.username && io.to(receiver.socketId).emit("getNotification", { senderName, senderImage, videoId, videoTitle, videoUrl, videoImgUrl }))
         }
     )
 

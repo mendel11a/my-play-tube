@@ -8,6 +8,10 @@ const Proxy2 = {
     target: "http://localhost:9900/api/", // change "localhost" to "api" when using docker
     changeOrigin: true
 }
+const Proxy3 = {
+    target: "http://localhost:6600/api/", // change "localhost" to "api" when using docker
+    changeOrigin: true
+}
 module.exports = app => {
   app.use('/users',
     createProxyMiddleware(Proxy) // to connect to auth microservice
@@ -17,5 +21,8 @@ module.exports = app => {
   );
   app.use('/videos',
     createProxyMiddleware(Proxy2) // to connect to video microservice
+  );
+  app.use('/notifications',
+    createProxyMiddleware(Proxy3) // to connect to notification microservice
   );
 };

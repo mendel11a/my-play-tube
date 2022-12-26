@@ -8,6 +8,8 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import { Link, useNavigate } from "react-router-dom";
 import UploadVideo from "./UploadVideo";
 import UploadPicture from "./UploadPicture";
+import Notification from "./Notification";
+import axios from "axios";
 
 
 const Container = styled.div`
@@ -82,7 +84,7 @@ const Counter = styled.div`
   font-size: 0.7rem;
   position: absolute;
   top: 0rem;
-  right: 6.5rem;
+  right: 5.1rem;
   color: ${({ theme }) => theme.text};
 `
 
@@ -98,29 +100,18 @@ const Notifications = styled.div`
   flex-direction: column;
   position: absolute;
   top: 3rem;
-  width: 20rem;
+  width: 28rem;
   right: -1.3rem;
   background-color: #282828;
   color: ${({ theme }) => theme.text};
   font-weight: 300;
 `
 
-const Notification = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  margin: 0.3rem 0rem;  
-  font-size: 0.9rem;
-  padding: 0.6rem;
-  cursor:pointer;
-`
-
 const NotificationButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0.2rem 1.2rem;
+  margin: 0.2rem 4rem;
   width: 80%;
   padding: 0.3rem 0.9rem;
   top: 0.6rem;
@@ -142,17 +133,47 @@ const Navbar = ({ socket }) => {
   const [openNotification, setOpenNotification] = useState(false)
   const [q, setQ] = useState("")
   const [notifications, setNotifications] = useState([])
+  const [unReadNotifications, setUnReadNotifications] = useState([])
 
 
   useEffect(() => {
     socket?.on("getNotification", data => {
-      setNotifications((prev) => [...prev, data])
+      setUnReadNotifications((prev) => [...prev, data])
     })
   }, [socket])
+
+  useEffect(() => {
+    const getUnReadNotifications = async ()=>{
+      const notifs= await axios.get('/notifications/unread')
+      setUnReadNotifications(notifs.data)
+    }
+    const getNotifications = async ()=>{
+      const notifs= await axios.get('/notifications')
+      console.log(notifs.data);
+      setNotifications(notifs.data)
+    } 
+    getUnReadNotifications()
+    getNotifications()
+  }, [])
+
+  const handleNotifications = async () => {
+    const notifs= await axios.get('/notifications')
+    console.log(notifs.data);
+    setNotifications(notifs.data)
+  }
 
   const handleRead = () => {
     setNotifications([])
     setOpenNotification(false)
+  }
+  
+  const handleNotificationRead = async () => {
+    setTimeout(async () => {
+      await axios.put('/notifications', {
+        receiverId: currentUser._id
+      })
+      setUnReadNotifications([])
+    }, 2000);    
   }
 
 
@@ -167,18 +188,14 @@ const Navbar = ({ socket }) => {
           {currentUser ? (
             <User>
               <VideoCallOutlinedIcon cursor="pointer" onClick={() => setOpenVideo(true)} />
-              <NotificationsNoneOutlinedIcon cursor="pointer" onClick={() => setOpenNotification(!openNotification)} />
-              {notifications.length > 0 && <Counter>{notifications.length}</Counter>}
+              <NotificationsNoneOutlinedIcon cursor="pointer" onClick={() => { setOpenNotification(!openNotification); handleNotifications(); handleNotificationRead() }} />
+              {unReadNotifications.length > 0 && <Counter>{unReadNotifications.length}</Counter>}
               <Avatar src={currentUser.img} onMouseOver={e => (e.currentTarget.src = "https://t4.ftcdn.net/jpg/04/81/13/43/360_F_481134373_0W4kg2yKeBRHNEklk4F9UXtGHdub3tYk.jpg")} onMouseOut={e => (e.currentTarget.src = currentUser.img)} onClick={() => setOpenPicture(true)} />
               {currentUser.name}
-              {openNotification &&
+              {openNotification && 
                 <Notifications>
-                  {notifications?.map(notification =>
-                  (<Notification key={notification.senderName} onClick={() => { navigate(`/video/${notification.videoId}`); setOpenNotification(false); setNotifications([]) }}>
-                    <Avatar src={notification.senderImage} />
-                    Recommended: {notification.senderName} posted a new Video - {notification.videoTitle}
-                    <Avatar src={notification.videImgUrl} />
-                  </Notification>))
+                  {notifications?.map((notification) =>
+                    (<Notification key={notification._id} notification={notification} setOpenNotification={setOpenNotification} />))
                   }
                   {notifications.length > 0 && <NotificationButton onClick={handleRead}>Mark As Read</NotificationButton>}
                 </Notifications>}
