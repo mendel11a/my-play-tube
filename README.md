@@ -6,9 +6,7 @@
 ## :movie_camera: Explanation & Functionalitites in Video
 
 
-
-https://user-images.githubusercontent.com/57116911/209849396-9c5c78bd-70c8-435e-abe8-d6b4f43c5f08.mp4
-
+https://user-images.githubusercontent.com/57116911/209850609-d6a89910-2828-4525-9f17-05a48de0bbf6.mp4
 
 
 ## The Home Page
