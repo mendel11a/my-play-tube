@@ -7,10 +7,6 @@
 
 
 
-Uploading Mendy Tube.mp4…
-
-
-
 ## The Home Page
 ![image](https://user-images.githubusercontent.com/57116911/206904442-3e0cfe74-8b8c-461d-84a9-ee661909e878.png)
 
