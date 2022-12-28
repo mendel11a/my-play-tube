@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import {useSelector}  from 'react-redux'
+import {useDispatch, useSelector}  from 'react-redux'
 import styled from 'styled-components'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import app from "../firebase"
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
+import { changePicture, changePictureFailure } from '../redux/userSlice';
 
 
 const Container = styled.div`
@@ -17,6 +18,7 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 9;
 `
 const Wrapper = styled.div`
     height: 10rem;
@@ -64,6 +66,7 @@ const UploadVideo = ({ setOpen }) => {
     const [img, setImg] = useState(undefined)
     const [imgPerc, setImgPerc] = useState(0)
     const [inputs, setInputs] = useState({})
+    const dispatch= useDispatch()
 
 
     const uploadFile = (file) => {
@@ -106,11 +109,17 @@ const UploadVideo = ({ setOpen }) => {
 
     const handleUpload = async (e) => {
         e.preventDefault();
-        const res = await axios.put(`/users/${currentUser._id}`,
-            {...inputs}
-        )
-        setOpen(false)
-        res.status===200 && navigate(`/`)
+        try{
+            const res = await axios.put(`/users/${currentUser._id}`,
+                {...inputs}
+            )
+            dispatch(changePicture(res.data))
+            setOpen(false)
+            navigate('/')
+        }
+        catch(err){
+            dispatch(changePictureFailure())
+        }
     }
 
     return (

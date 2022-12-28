@@ -38,9 +38,17 @@ export const userSlice = createSlice({
             } else {
                 state.currentUser.subscribedUsers.push(action.payload)
             }
-        }
+        },
+        changePicture: (state, action) => {
+            state.loading = false;
+            state.currentUser = action.payload
+        },
+        changePictureFailure: (state) => {
+            state.loading = null;
+            state.error = true
+        },
     },
 })
 
-export const { loginStart, loginSuccess, loginFailure, logout, subscription, signupFailure } = userSlice.actions
+export const { loginStart, loginSuccess, loginFailure, logout, subscription, signupFailure, changePicture, changePictureFailure } = userSlice.actions
 export default userSlice.reducer

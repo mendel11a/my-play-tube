@@ -201,7 +201,7 @@ const Video = ({socket}) => {
         <Hr />
         <Comments videoId={currentVideo._id}/>
       </Content>}
-      <Recommendation tags={currentVideo.tags}/>
+      <Recommendation tags={currentVideo?.tags}/>
     </Container>
   );
 };
