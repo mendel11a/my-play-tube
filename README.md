@@ -3,10 +3,9 @@
 ### Hi Everyone, in this project i've built a clone of youtube using MERN stack, firebase to store files that i want to upload to the website and i've containerized the project using docker. <br /> You can register using two options, the first is manually by filling personal infos, the second one is using GoogleAuth.<br />Many features have been implemented such as light mode page, subscriptions page where only videos of account you've subscribed to appear, videos recommendations by keyword, like/dislike options and more...<br />You can try it by yourself by using the docker image and run port 3000. :slightly_smiling_face:
 ### :rotating_light: I Added in the "create-microservice" branch an implementation of the website by splitting it to microservices & using multiple technologies like: RabbitMQ & Socket-io for the notifications service. So you can check this also :slightly_smiling_face:
 
-## :movie_camera: Explanation & Functionalitites in Video
+## :movie_camera: Explanation & Functionalities in Video
 
-
-https://user-images.githubusercontent.com/57116911/209850609-d6a89910-2828-4525-9f17-05a48de0bbf6.mp4
+https://user-images.githubusercontent.com/57116911/209850769-7de58dfa-e9e9-45e1-94d6-f899d2a72ca3.mp4
 
 
 ## The Home Page
